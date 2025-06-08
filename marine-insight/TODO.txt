@@ -1,0 +1,17 @@
+Fetching data
+
+# Map Features
+Coordinates Mapping to the map
+Buttons to show / hide the data
+    - Add a button to the map to show / hide the data
+    - Add a button to the map to show / hide the data in a table
+    - Add a button to the map to show / hide the data in a chart
+    - Add a button to the map to show / hide the data in a graph
+
+# Search Features
+Coordinates Search
+    - Add a search bar to the map to search for coordinates
+
+# Table Features
+Coordinates Table
+    - Add a table to the map to display the coordinates

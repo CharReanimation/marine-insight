@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Components
-import NavBar from "./scripts/Components/NavBar"; // Nav
+import NavBar from "./scripts/Public/General/NavBar"; // Nav
 
 // General Pages
 import Error from "./scripts/Public/General/Error";
