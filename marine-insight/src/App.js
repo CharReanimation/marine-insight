@@ -10,7 +10,7 @@ import Home from "./scripts/Public/General/Home";
 import About from "./scripts/Public/General/About";
 
 // Main Pages
-import Map from "./scripts/Public/Main/Map";
+import Map from "./scripts/Public/Main/Map/Map";
 
 // CSS
 import './App.css';

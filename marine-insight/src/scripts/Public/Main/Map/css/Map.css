@@ -1,0 +1,114 @@
+/* Map.css */
+.leaflet-container {
+    height: 100vh;
+    width: 100%;
+    z-index: 0;
+}
+
+/* Map Container */
+#map-container {
+    /* Display */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Margin & Padding */
+    margin: 20px 0px 20px 0px;
+    padding: 20px 0px 20px 0px;
+}
+
+
+/* Map Warpper */
+.map-wrapper {
+    /* Padding */
+    padding: 10px;
+
+    /* Size */
+    width: 80%;
+    height: 70vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    /* Background */
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(50px);
+
+    /* Border Box */
+    border-radius: 10px;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+
+    /* Overflow */
+    overflow: hidden;
+}
+
+
+/* User Input */
+.input-panel {
+    /* Display */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    /* Margin & Padding */
+    margin: 50px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.input-panel input {
+    /* Size */
+    width: 270px;
+    box-sizing: border-box;
+
+    /* Margin & Padding */
+    padding: 6px 6px 6px 6px;
+
+    /* Text */
+    font-size: 14px;
+
+    /* Border Box */
+    border-radius: 10px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Input Block */
+.input-block {
+    /* Display */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-block label {
+    width: 40px;
+    text-align: right;
+}
+
+.input-container-btn {
+    /* Margin & Padding */
+    margin: 10px 0px 0px 0px;
+    padding: 10px 20px 10px 20px;
+
+    background-color: white;
+
+    /* Text */
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+
+    /* Border Box */
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transition */
+    transition: 0.3s;
+}
+
+.input-container-btn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
