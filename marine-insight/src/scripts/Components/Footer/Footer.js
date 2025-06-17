@@ -8,7 +8,7 @@ const Footer = () => {
     // Return
     return (
         <footer className='page-footer'>
-            <h2>Powered By: </h2>
+            <h2>Powered By: DAL's 3 Musketeers</h2>
         </footer>
     );
 };

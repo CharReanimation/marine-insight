@@ -11,6 +11,8 @@ import {
 import L from "leaflet";
 
 // Components
+import { LoadGeoData } from "../GeoData/GeoData";
+import ZoomDisplay from "./Components/ZoomDisplay";
 
 // Header & Footer
 import Header from "../../../Components/Header/Header";
@@ -80,21 +82,44 @@ const Map = () => {
   const [position, setPosition] = useState(null);
   const [clickPosition, setClickPosition] = useState(null);
   const [mapCentered, setMapCentered] = useState(false);
-
-  // GeoJSON Data
-  const [geoData, setGeoData] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [geoData, setGeoData] = useState(null); // GeoJSON Data
+  const [ready, setReady] = useState(false);
 
   // Load GeoJSON
   useEffect(() => {
-    fetch("/data/clusters.geojson")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Loaded GeoJSON:", data);
-        setGeoData(data);
-      });
-  }, []);
+    const fetchGeoData = async () => {
+      setReady(false);
+      setGeoData(null);
 
-  // Update
+      const data = await LoadGeoData(selectedFile); // Load Geo Data
+
+      if (data) {
+        setGeoData(data);
+
+        const defaultCoords = {
+          "/data/GEO/obvymk_quality_clusters.geojson": [45.16833, -72.69351],
+          "/data/GEO/placentia_chemistry_clusters.geojson": [47.88671, -53.95253],
+          "/data/GEO/predicted_clusters.geojson": [45.24481, -66.05948],
+        };
+
+        const coord = defaultCoords[selectedFile];
+        if (coord) {
+          setLatInput(coord[0].toString());
+          setLngInput(coord[1].toString());
+          setPosition(coord);
+          setMapCentered(false);
+          setReady(true);
+        }
+      }
+    };
+
+    if (selectedFile) {
+      fetchGeoData();
+    }
+  }, [selectedFile]);
+
+  // Handle Update
   const handleUpdate = () => {
     const lat = parseFloat(latInput);
     const lng = parseFloat(lngInput);
@@ -115,17 +140,70 @@ const Map = () => {
     }
   };
 
+  // Handle GeoJSON Selection
+  const handleGeoJsonSelection = (filePath) => {
+    setSelectedFile(filePath);
+  };
+
+  // Clear Markers
+  const handleClearMarkers = () => {
+    setPosition(null);
+    setClickPosition(null);
+    setLatInput("");
+    setLngInput("");
+  };
+
   // Return
   return (
     <div id="Map-body">
       <Header HeaderText="MAP" />
+
+      {/* GeoJSON File Selector */}
+      <div className="geojson-selector">
+        <label>
+          <input
+            type="radio"
+            name="geojson"
+            value="/data/GEO/obvymk_quality_clusters.geojson"
+            checked={
+              selectedFile === "/data/GEO/obvymk_quality_clusters.geojson"
+            }
+            onChange={(e) => handleGeoJsonSelection(e.target.value)}
+          />
+          Cluster 1
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="geojson"
+            value="/data/GEO/placentia_chemistry_clusters.geojson"
+            checked={
+              selectedFile === "/data/GEO/placentia_chemistry_clusters.geojson"
+            }
+            onChange={(e) => handleGeoJsonSelection(e.target.value)}
+          />
+          Cluster 2
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="geojson"
+            value="/data/GEO/predicted_clusters.geojson"
+            checked={selectedFile === "/data/GEO/predicted_clusters.geojson"}
+            onChange={(e) => handleGeoJsonSelection(e.target.value)}
+          />
+          Cluster 3
+        </label>
+      </div>
+
       {/* User Input */}
       <div className="input-container">
         <div className="input-panel">
           {/* LAT */}
           <div className="input-block">
-            <label for="lat">LAT:</label>
+            <label htmlFor="lat">LAT:</label>
             <input
+              id="lat"
               type="text"
               placeholder="Latitude"
               value={latInput}
@@ -134,8 +212,9 @@ const Map = () => {
           </div>
           {/* LNG */}
           <div className="input-block">
-            <label for="lng">LNG:</label>
+            <label htmlFor="lng">LNG:</label>
             <input
+              id="lng"
               type="text"
               placeholder="Longitude"
               value={lngInput}
@@ -147,15 +226,19 @@ const Map = () => {
         <button className="btn-main-short" onClick={handleUpdate}>
           UPDATE MAP
         </button>
+        <button className="btn-main-short" onClick={handleClearMarkers}>
+          CLEAR MARKER
+        </button>
       </div>
 
       {/* Map */}
-      {position && (
+      {ready && (
         <div id="map-container">
           <div className="map-wrapper">
             <MapContainer
+              key={selectedFile}
               center={position}
-              zoom={13}
+              zoom={11}
               scrollWheelZoom={false}
               style={{ width: "100%", height: "100%" }}
             >
@@ -177,6 +260,9 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               />
+
+              {/* Zoom Display */}
+              <ZoomDisplay />
 
               {/* Marker From Update Map */}
               {position && (

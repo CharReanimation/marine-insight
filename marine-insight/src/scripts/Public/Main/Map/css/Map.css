@@ -41,6 +41,20 @@
     overflow: hidden;
 }
 
+/* Clusters Selector */
+.geojson-selector{
+    /* Display */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    /* Margin & Padding */
+    margin: 50px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
 
 /* User Input */
 .input-panel {

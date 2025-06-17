@@ -1,0 +1,20 @@
+
+/* Zoom Display */
+.zoom-display {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+
+  /* Padding */
+  padding: 4px 8px;
+  /* BG */
+  background: rgba(0, 0, 0, 0.6);
+
+  /* Text */
+  color: #ffffff;
+  font-size: 0.9rem;
+
+  /* Border Box */
+  border-radius: 4px;
+  z-index: 1000;
+}
