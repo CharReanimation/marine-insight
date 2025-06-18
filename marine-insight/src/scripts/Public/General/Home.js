@@ -16,6 +16,7 @@ const Home = () => {
     return (
         <div id="Home">
             <Header HeaderText="HOME" />
+            <h2><a href="https://github.com/CharReanimation/marine-insight">GitHub: marine-insight</a></h2>
             <Footer />
         </div>
     );
