@@ -98,9 +98,11 @@ const Map = () => {
         setGeoData(data);
 
         const defaultCoords = {
-          "/data/GEO/obvymk_quality_clusters.geojson": [45.16833, -72.69351],
-          "/data/GEO/placentia_chemistry_clusters.geojson": [47.88671, -53.95253],
           "/data/GEO/predicted_clusters.geojson": [45.24481, -66.05948],
+          "/data/GEO/placentia_chemistry_clusters.geojson": [
+            47.88671, -53.95253,
+          ],
+          "/data/GEO/obvymk_quality_clusters.geojson": [45.16833, -72.69351],
         };
 
         const coord = defaultCoords[selectedFile];
@@ -164,10 +166,8 @@ const Map = () => {
           <input
             type="radio"
             name="geojson"
-            value="/data/GEO/obvymk_quality_clusters.geojson"
-            checked={
-              selectedFile === "/data/GEO/obvymk_quality_clusters.geojson"
-            }
+            value="/data/GEO/predicted_clusters.geojson"
+            checked={selectedFile === "/data/GEO/predicted_clusters.geojson"}
             onChange={(e) => handleGeoJsonSelection(e.target.value)}
           />
           Place 1
@@ -188,8 +188,10 @@ const Map = () => {
           <input
             type="radio"
             name="geojson"
-            value="/data/GEO/predicted_clusters.geojson"
-            checked={selectedFile === "/data/GEO/predicted_clusters.geojson"}
+            value="/data/GEO/obvymk_quality_clusters.geojson"
+            checked={
+              selectedFile === "/data/GEO/obvymk_quality_clusters.geojson"
+            }
             onChange={(e) => handleGeoJsonSelection(e.target.value)}
           />
           Place 3
