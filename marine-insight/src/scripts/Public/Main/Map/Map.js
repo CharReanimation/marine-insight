@@ -170,7 +170,7 @@ const Map = () => {
             }
             onChange={(e) => handleGeoJsonSelection(e.target.value)}
           />
-          Cluster 1
+          Place 1
         </label>
         <label>
           <input
@@ -182,7 +182,7 @@ const Map = () => {
             }
             onChange={(e) => handleGeoJsonSelection(e.target.value)}
           />
-          Cluster 2
+          Place 2
         </label>
         <label>
           <input
@@ -192,7 +192,7 @@ const Map = () => {
             checked={selectedFile === "/data/GEO/predicted_clusters.geojson"}
             onChange={(e) => handleGeoJsonSelection(e.target.value)}
           />
-          Cluster 3
+          Place 3
         </label>
       </div>
 
